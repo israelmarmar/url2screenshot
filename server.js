@@ -5,8 +5,8 @@ var app = express();
 var port = process.env.PORT || 3000;  
 
 app.get('/', function (req, res) {
-
-new Screenshot('http://g1.globo.com/')
+console.log(req);
+new Screenshot(req.query.url)
   .width(800)
   .height(600)
   .clip()
