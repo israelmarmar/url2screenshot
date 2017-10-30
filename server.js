@@ -4,11 +4,11 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;  
 
-app.get('/http://:url', function (req, res) {
+app.get('/:url', function (req, res) {
 console.log(req.params.url);
 
 if(req.headers.origin=="https://israelmarmar.github.io"){
-new Screenshot("http://"+req.params.url)
+new Screenshot(decoderURIComponent(req.params.url))
   .width(800)
   .height(600)
   .clip()
@@ -24,26 +24,6 @@ new Screenshot("http://"+req.params.url)
 
 })
 
-
-app.get('/https://:url', function (req, res) {
-console.log(req.params.url);
-
-if(req.headers.origin=="https://israelmarmar.github.io"){
-new Screenshot("https://"+req.params.url)
-  .width(800)
-  .height(600)
-  .clip()
-  .capture()
-  .then(img =>{
-    fs.writeFileSync(__dirname + '/screen.png', img)
-    console.log('open screen.png')
-    res.sendFile(__dirname + '/screen.png');
-  })
-}else{
-	res.json({"msg": "Permission denied. Unidentified origin"});
-}
-
-})
 
 app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
