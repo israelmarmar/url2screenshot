@@ -12,8 +12,9 @@ new Screenshot('http://g1.globo.com/')
   .clip()
   .capture()
   .then(img =>{
-    fs.writeFileSync(__dirname + '/example.png', img)
-    console.log('open example.png')
+    fs.writeFileSync(__dirname + '/screen.png', img)
+    console.log('open screen.png')
+    res.sendFile(__dirname + '/screen.png');
   })
 
 })
