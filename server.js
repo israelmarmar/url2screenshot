@@ -9,8 +9,8 @@ console.log(req.params.url);
 
 
 new Screenshot(decodeURI(req.params.url))
-  .width(800)
-  .height(600)
+  .width(1200)
+  .height(800)
   .capture()
   .then(img =>{
     fs.writeFileSync(__dirname + '/screen.png', img)
