@@ -19,7 +19,7 @@ new Screenshot("http://"+req.params.url)
     res.sendFile(__dirname + '/screen.png');
   })
 }else{
-	res.json("msg", "Permission denied. Unidentified origin");
+	res.json({"msg": "Permission denied. Unidentified origin"});
 }
 
 })
@@ -40,7 +40,7 @@ new Screenshot("https://"+req.params.url)
     res.sendFile(__dirname + '/screen.png');
   })
 }else{
-	res.json("msg", "Permission denied. Unidentified origin");
+	res.json({"msg": "Permission denied. Unidentified origin"});
 }
 
 })
