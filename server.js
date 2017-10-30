@@ -11,7 +11,6 @@ console.log(req.params.url);
 new Screenshot(decodeURI(req.params.url))
   .width(800)
   .height(600)
-  .clip()
   .capture()
   .then(img =>{
     fs.writeFileSync(__dirname + '/screen.png', img)
