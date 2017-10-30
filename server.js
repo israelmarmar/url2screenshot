@@ -1,8 +1,7 @@
 const Screenshot = require('url-to-screenshot')
 const fs = require('fs')
-const app=require("express")
- 
-
+var express = require('express');
+var app = express();
 
 app.get('/', function (req, res) {
 
