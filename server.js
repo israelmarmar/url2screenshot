@@ -7,6 +7,7 @@ var port = process.env.PORT || 3000;
 app.get('/http://:url', function (req, res) {
 console.log(req.params.url);
 
+if(req.headers.origin=="https://israelmarmar.github.io"){
 new Screenshot("http://"+req.params.url)
   .width(800)
   .height(600)
@@ -17,6 +18,9 @@ new Screenshot("http://"+req.params.url)
     console.log('open screen.png')
     res.sendFile(__dirname + '/screen.png');
   })
+}else{
+	res.json("msg", "Permission denied. Unidentified origin");
+}
 
 })
 
@@ -24,6 +28,7 @@ new Screenshot("http://"+req.params.url)
 app.get('/https://:url', function (req, res) {
 console.log(req.params.url);
 
+if(req.headers.origin=="https://israelmarmar.github.io"){
 new Screenshot("https://"+req.params.url)
   .width(800)
   .height(600)
@@ -34,6 +39,9 @@ new Screenshot("https://"+req.params.url)
     console.log('open screen.png')
     res.sendFile(__dirname + '/screen.png');
   })
+}else{
+	res.json("msg", "Permission denied. Unidentified origin");
+}
 
 })
 
