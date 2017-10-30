@@ -2,6 +2,7 @@ const Screenshot = require('url-to-screenshot')
 const fs = require('fs')
 var express = require('express');
 var app = express();
+var port = process.env.PORT || 3000;  
 
 app.get('/', function (req, res) {
 
