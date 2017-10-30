@@ -37,6 +37,26 @@ new Screenshot("https://"+req.params.url)
 
 })
 
+
+
+app.get('/cons/https://:url', function (req, res) {
+console.log(req.params.url);
+console.log(req.headers);
+    res.json(req.headers);
+
+
+})
+
+
+
+app.get('/cons/http://:url', function (req, res) {
+console.log(req.params.url);
+console.log(req.headers);
+    res.json(req.headers);
+
+
+})
+
 app.listen(port, function () {
  console.log("ligado");
 });
