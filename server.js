@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;  
 
-app.get('/http://:url+/https://:url', function (req, res) {
+app.get('/http://:url+https://:url', function (req, res) {
 console.log(req);
 
 new Screenshot(req.params.url)
