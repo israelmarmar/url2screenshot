@@ -7,8 +7,8 @@ var port = process.env.PORT || 3000;
 app.get('/:url', function (req, res) {
 console.log(req.params.url);
 
-if(req.headers.origin=="https://israelmarmar.github.io"){
-new Screenshot(decoderURIComponent(req.params.url))
+
+new Screenshot(decodeURI(req.params.url))
   .width(800)
   .height(600)
   .clip()
@@ -18,9 +18,6 @@ new Screenshot(decoderURIComponent(req.params.url))
     console.log('open screen.png')
     res.sendFile(__dirname + '/screen.png');
   })
-}else{
-	res.json({"msg": "Permission denied. Unidentified origin"});
-}
 
 })
 
