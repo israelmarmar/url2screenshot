@@ -5,6 +5,10 @@ var port = process.env.PORT || 3000;
 
 var webshot = require('webshot');
 
+function isURL(str) {
+  return str.split("http").length>1
+}
+
 app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -20,20 +24,30 @@ var options = {
   defaultWhiteBackground: "true"
 };
  
- console.log(req.params.url);
+ console.log("url: "+req.params.url);
 
-var renderStream = webshot(req.params.url, options);
-var file = fs.createWriteStream('screen.jpeg', {encoding: 'binary'});
+
  
+if(isURL(req.params.url)){
+
+  var renderStream = webshot(req.params.url, options);
+var file = fs.createWriteStream('screen.jpeg', {encoding: 'binary'});
 renderStream.on('data', function(data) {
+
+  if(file)
   file.write(data.toString('binary'), 'binary' ,function(err){
     console.log("gravado");
     res.sendFile(__dirname+"/screen.jpeg");
     res.end();
     file.close();
+    file=null;
   });
+ 
+  
 
 });
+
+}
 
 
 
