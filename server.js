@@ -15,13 +15,28 @@ app.use(function(req, res, next) {
 
 app.get('/:url', function (req, res) {
 
-var renderStream = webshot(req.params.url);
-var file = fs.createWriteStream('screen.jpg', {encoding: 'binary'});
+var options = {
+  quality:30,
+  defaultWhiteBackground: "true"
+};
+ 
+ console.log(req.params.url);
+
+var renderStream = webshot(req.params.url, options);
+var file = fs.createWriteStream('screen.jpeg', {encoding: 'binary'});
  
 renderStream.on('data', function(data) {
-  file.write(data.toString('binary'), 'binary');
-  res.sendFile(__dirname+"/screen.jpg");
+  file.write(data.toString('binary'), 'binary' ,function(err){
+    console.log("gravado");
+    res.json({msg: "gravado"});
+    res.end();
+    file.close();
+  });
+
 });
+
+
+
 
 });
 
