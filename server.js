@@ -28,7 +28,7 @@ var file = fs.createWriteStream('screen.jpeg', {encoding: 'binary'});
 renderStream.on('data', function(data) {
   file.write(data.toString('binary'), 'binary' ,function(err){
     console.log("gravado");
-    res.json({msg: "gravado"});
+    res.sendFile(__dirname+"/screen.jpeg");
     res.end();
     file.close();
   });
