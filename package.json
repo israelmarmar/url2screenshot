@@ -10,13 +10,13 @@
   "dependencies": {
     "express": "^4.16.2",
     "fs": "0.0.1-security",
-    "screenshot-stream": "latest",
-	"phantomjs":"latest"
+    "screenshot-stream": "latest"
   },
   "scripts": {
     "start": "node server.js"
   },
   "devDependencies": {
-	  "phantomjs-prebuilt":"latest"
+	"phantomjs": "^2.1.7", 
+	"phantomjs-prebuilt": "2.1.4"
   }
 }
