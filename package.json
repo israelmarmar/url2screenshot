@@ -10,7 +10,8 @@
   "dependencies": {
     "express": "^4.16.2",
     "fs": "0.0.1-security",
-    "webshot": "^0.18.0"
+    "screenshot-stream": "latest",
+	"phantomjs":"latest"
   },
   "scripts": {
     "start": "node server.js"
