@@ -16,5 +16,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "devDependencies": {}
+  "devDependencies": {
+	  "phantomjs-prebuilt":"latest"
+  }
 }
