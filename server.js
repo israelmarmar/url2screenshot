@@ -19,8 +19,9 @@ function isURL(str){
 
 app.get('/:url', function (req, res) {
   console.log(req.headers);
+  
 
-  if(req.headers.origin=="israelmarmar.github.io"){
+  if(req.headers.referer=="https://israelmarmar.github.io/portifolio/"){
   const file=encod(req.params.url)+".png";
 
   if(req.params.url){
