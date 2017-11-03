@@ -32,6 +32,8 @@ app.use(function(req, res, next) {
 
 app.get('/:url', function (req, res) {
   console.log(req.headers.origin);
+
+  if(req.headers.origin=="israelmarmar.github.io"){
   const file=encod(req.params.url)+".png";
 
   if(req.params.url){
@@ -40,6 +42,8 @@ app.get('/:url', function (req, res) {
      setTimeout(function(){fs.unlinkSync(__dirname+"/"+file);}, 3000);
     });
   }
+}else
+res.json({msg:"Origin is not allowed"});
 
 });
 
