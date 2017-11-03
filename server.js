@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
         next();
 });
 
-app.get('/cons', function (req, res) {
+app.get('/cons/:url', function (req, res) {
 
 console.log(req.headers);
     res.json(req.headers);
