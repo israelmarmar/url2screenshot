@@ -17,14 +17,21 @@ function isURL(str){
   return str.split("http").length>0
 }
 
+
+
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "israelmarmar.github.io*");
+  var allowedOrigins = ['https://israelmarmar.github.io'];
+  var origin = req.headers.origin;
+  if(allowedOrigins.indexOf(origin) > -1){
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 
 app.get('/:url', function (req, res) {
+  console.log(req.headers.origin);
   const file=encod(req.params.url)+".png";
 
   if(req.params.url){
