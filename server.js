@@ -9,7 +9,13 @@ function encod(string){
   return Base64.encode(string).replace(/\+|\/|=|:/gi,"");
 }
 
+function isURL(str){
+  return str.split("http").length>0
+}
+
 app.get('/:url', function (req, res) {
+
+  if(req.params.url){
 const stream = screenshot(req.params.url, '1024x768', {crop: true});
  const filename=encod(req.params.url)+'.png';
 stream.pipe(
@@ -34,6 +40,8 @@ stream.pipe(
     });
 
     }, 100);
+
+  }
 
 });
 
