@@ -17,6 +17,12 @@ function isURL(str){
   return str.split("http").length>0
 }
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "israelmarmar.github.io*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 app.get('/:url', function (req, res) {
   const file=encod(req.params.url)+".png";
