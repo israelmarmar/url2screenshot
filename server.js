@@ -42,6 +42,14 @@ app.use(function(req, res, next) {
         next();
 });
 
+app.get('/cons', function (req, res) {
+
+console.log(req.headers);
+    res.json(req.headers);
+
+
+})
+
 app.listen(port, function () {
  console.log("ligado");
 });
