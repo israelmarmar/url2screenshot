@@ -4,8 +4,8 @@
   "author": "Israel Martins",
   "description": "url-to-screenshot",
   "engines": {
-    "node": "latest",
-    "npm": "latest"
+    "node": "v6.11.2",
+    "npm": "^3.10.10"
   },
   "dependencies": {
     "express": "^4.16.2",
