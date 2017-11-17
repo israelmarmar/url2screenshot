@@ -26,8 +26,11 @@ app.get('/:url', function (req, res) {
 
   if(req.params.url){
     webshot(req.params.url, file, function(err) {
-     res.sendFile(__dirname+"/"+file);
-     setTimeout(function(){fs.unlinkSync(__dirname+"/"+file);}, 3000);
+     res.sendFile(__dirname+"/"+file).then(function(value){
+      fs.unlinkSync(__dirname+"/"+file);
+     }
+      );
+     
     });
   }
 }else
