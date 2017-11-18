@@ -18,6 +18,8 @@ function isURL(str){
 }
 
 app.get('/:url', function (req, res) {
+ var resp=res;
+ 
   console.log(req.headers);
   
 
@@ -26,7 +28,7 @@ app.get('/:url', function (req, res) {
 
   if(req.params.url){
     webshot(req.params.url, file, function(err) {
-     res.sendFile(__dirname+"/"+file).then(function(value){
+     resp.sendFile(__dirname+"/"+file).then(function(value){
       fs.unlinkSync(__dirname+"/"+file);
      }
       );
