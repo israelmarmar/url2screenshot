@@ -20,7 +20,7 @@ app.get('/:url', function (req, res) {
   
   const file=encod(req.params.url)+".png";
 
-  if(req.headers.referer=="https://israelmarmar.github.io/portifolio/"){
+
 
     (async () => {
     const browser = await puppeteer.launch();
@@ -40,9 +40,6 @@ app.get('/:url', function (req, res) {
     await browser.close();
 
     })();
-
-  }else
-  res.json({msg:"Origin is not allowed"});
 
 
 });
