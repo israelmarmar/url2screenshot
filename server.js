@@ -27,7 +27,7 @@ app.get('/:url', function (req, res) {
   const file=encod(req.params.url)+".png";
 
   if(req.params.url){
-    webshot(req.params.url, file, function(err) {
+    webshot(req.params.url, file, {renderDelay: 8000}, function(err) {
      resp.sendFile(__dirname+"/"+file, function(value){
       fs.unlinkSync(__dirname+"/"+file);
      });
