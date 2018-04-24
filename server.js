@@ -31,11 +31,18 @@ app.get('/:url', function (req, res) {
     console.log(req.params.url);
 
     console.log(await page.content());
+
+    await page.waitFor(6000);
+
     await page.screenshot({path: file, fullPage: true});
 
+    if (fs.existsSync(__dirname+"/"+file)) {
     resp.sendFile(__dirname+"/"+file, function(value){
-      fs.unlinkSync(__dirname+"/"+file);
+        fs.unlinkSync(__dirname+"/"+file);
     });
+    }
+
+   
 
     await browser.close();
 
