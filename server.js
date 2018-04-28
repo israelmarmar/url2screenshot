@@ -13,8 +13,8 @@ var parseUrl = function(url) {
     return url;
 };
 
-app.get('/:url', function(req, res) {
-    var urlToScreenshot = req.params.url;
+app.get('/', function(req, res) {
+    var urlToScreenshot = parseUrl(req.query.url);
 
     if (validUrl.isWebUri(urlToScreenshot)) {
         console.log('Screenshotting: ' + urlToScreenshot);
@@ -24,11 +24,16 @@ app.get('/:url', function(req, res) {
             });
 
             const page = await browser.newPage();
-            await page.goto(urlToScreenshot);
+
+            await page.goto(urlToScreenshot,{timeout:60000});
+
+            await page.waitFor(3000);
+
+            
             await page.screenshot().then(function(buffer) {
                 res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
                 res.setHeader('Content-Type', 'image/png');
-                res.send(buffer)
+                res.send(buffer);
             });
 
             await browser.close();
