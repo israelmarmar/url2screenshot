@@ -13,7 +13,7 @@ var parseUrl = function(url) {
     return url;
 };
 
-app.get('/', function(req, res) {
+app.get('/:url', function(req, res) {
     var urlToScreenshot = req.params.url;
 
     if (validUrl.isWebUri(urlToScreenshot)) {
