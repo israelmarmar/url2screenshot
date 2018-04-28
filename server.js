@@ -12,64 +12,64 @@ function encod(string){
 }
 
 app.get('/:url', function (req, res) {
- var resp=res;
- 
-  console.log(req.headers);
-  
+   var resp=res;
 
-  
-  const file=encod(req.params.url)+".png";
+   console.log(req.headers);
 
 
 
-    (async () => {
+   const shot = async () => {
+    const file=encod(req.params.url)+".png";
     const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 
     const page = await browser.newPage();
 
-    await page.goto(req.params.url);
-    console.log(req.params.url);
+    page.setViewport({width:1366,height:768});
 
-    console.log(await page.content());
+    const suc = await page.goto(req.params.url,{timeout:60000});
+    
 
-    await page.waitFor(6000);
+   console.log(await page.content());
 
-    await page.screenshot({path: file, fullPage: true});
+  await page.waitFor(3000);
 
-    if (fs.existsSync(__dirname+"/"+file)) {
+  const img = await page.screenshot({path: file, fullPage: true});
+
+  if (fs.existsSync(__dirname+"/"+file)) {
     resp.sendFile(__dirname+"/"+file, function(value){
         fs.unlinkSync(__dirname+"/"+file);
     });
-    }
 
-   
+}
 
-    await browser.close();
 
-    })();
+
+await browser.close();
+
+}
 
 
 });
 
 app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.header("Access-Control-Allow-Headers", "Content-Type");
-        res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
-        next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+    next();
 });
 
 app.get('/cons/:url', function (req, res) {
 
-console.log(req.headers);
+    console.log(req.headers);
     res.json(req.headers);
 
 
 })
 
 app.listen(port, function () {
- console.log("ligado");
+   console.log("ligado");
 });
