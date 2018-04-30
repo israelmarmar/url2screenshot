@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 
     if (validUrl.isWebUri(urlToScreenshot)) {
         console.log('Screenshotting: ' + urlToScreenshot);
-        (async() => {
+        
             const browser = await puppeteer.launch({
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
@@ -27,8 +27,7 @@ app.get('/', function(req, res) {
 
             await page.goto(urlToScreenshot,{timeout:60000});
 
-            //await page.waitFor(3000);
-
+            await page.waitFor(3000);
             
             await page.screenshot().then(function(buffer) {
                 res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
@@ -37,7 +36,7 @@ app.get('/', function(req, res) {
             });
 
             await browser.close();
-        })();
+  
     } else {
         res.send('Invalid url: ' + urlToScreenshot);
     }
