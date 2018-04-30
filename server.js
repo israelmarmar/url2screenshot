@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 
             await page.goto(urlToScreenshot,{timeout:60000});
 
-            await page.waitFor(3000);
+            //await page.waitFor(3000);
 
             
             await page.screenshot().then(function(buffer) {
