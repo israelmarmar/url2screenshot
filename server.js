@@ -25,9 +25,10 @@ app.get('/', function(req, res) {
 
             const page = await browser.newPage();
 
-            await page.goto(urlToScreenshot,{timeout:60000});
+            await page.goto(urlToScreenshot);
 
-            await page.waitFor(3000);
+            if(req.query.delay)
+            await page.waitFor(parseInt(req.query.delay));
 
             
             await page.screenshot({fullPage: true}).then(function(buffer) {
