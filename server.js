@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
             await page.waitFor(parseInt(req.query.delay));
 
             
-            await page.screenshot({fullPage: true}).then(function(buffer) {
+            await page.screenshot().then(function(buffer) {
                 res.setHeader('Content-Disposition', 'attachment;filename="' + urlToScreenshot + '.png"');
                 res.setHeader('Content-Type', 'image/png');
                 res.send(buffer);
