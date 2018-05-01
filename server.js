@@ -16,6 +16,7 @@ var parseUrl = function(url) {
 app.get('/', function(req, res) {
     var urlToScreenshot = parseUrl(req.query.url);
 
+    if(req.headers.referer=="https://israelmarmar.github.io/portifolio/"){
     if (validUrl.isWebUri(urlToScreenshot)) {
         console.log('Screenshotting: ' + urlToScreenshot);
         (async() => {
@@ -42,6 +43,9 @@ app.get('/', function(req, res) {
     } else {
         res.send('Invalid url: ' + urlToScreenshot);
     }
+        
+  }else
+  res.json({msg:"Origin is not allowed"});
 
 });
 
