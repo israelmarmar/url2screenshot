@@ -26,7 +26,7 @@ app.get('/', function(req, res) {
 
             const page = await browser.newPage();
             
-            await page.setViewport({ width: 1024, height: 768 });
+            await page.setViewport({ width: 1440, height: 900 });
 
             await page.goto(urlToScreenshot);
 
