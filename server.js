@@ -35,8 +35,10 @@ app.get('/', function(req, res) {
             
             await page.evaluate(() => {
                let dom = document.querySelector('#main-header');
-               dom.innerHTML = "";
-               dom.classList.remove("main-header");
+                if (dom){
+                    dom.innerHTML = "";
+                    dom.classList.remove("main-header");
+                }
             });
 
             
