@@ -32,6 +32,12 @@ app.get('/', function(req, res) {
 
             if(req.query.delay)
             await page.waitFor(parseInt(req.query.delay));
+            
+            await page.evaluate(() => {
+               let dom = document.querySelector('#main-header');
+               dom.innerHTML = "";
+               dom.classList.remove("main-header");
+            });
 
             
             await page.screenshot().then(function(buffer) {
