@@ -55,7 +55,7 @@ app.get('/', function(req, res) {
     }
         
   }else{
-  console.log({msg:"Origin is not allowed"});
+  console.log({msg:"Origin is not allowed", origin: req.headers.referer});
   res.json({msg:"Origin is not allowed"});
   }
 
