@@ -54,8 +54,10 @@ app.get('/', function(req, res) {
         res.send('Invalid url: ' + urlToScreenshot);
     }
         
-  }else
+  }else{
+  console.log({msg:"Origin is not allowed"});
   res.json({msg:"Origin is not allowed"});
+  }
 
 });
 
