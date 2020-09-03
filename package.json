@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "fs": "0.0.1-security",
-    "puppeteer": "^1.3.0",
+    "puppeteer": "^1.13.0",
     "valid-url": "^1.0.9"
   },
   "puppeteer": {
